@@ -10,27 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: Setup .NET Core
+      - name: Setup .NET 8.0
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build project
-        run: dotnet build --no-restore
-
-      - name: Publish project
-        run: dotnet publish FreelancePlatform.csproj -c Release -o publish
-
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
+      - name: Restore Dependencies
+        run: dotnet restore FreelancePlatform/FreelancePlatform.csproj
+
+      - name: Build Project
+        run: dotnet build FreelancePlatform/FreelancePlatform.csproj --configuration Release
+
+      - name: Publish Project
+        run: dotnet publish FreelancePlatform/FreelancePlatform.csproj --configuration Release --output publish
+
       - name: Deploy to Firebase Hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: firebase deploy --only hosting --project freelanceplatform-1155a --public publish/wwwroot
+        run: firebase deploy --token "${{ secrets.FIREBASE_TOKEN }}"
