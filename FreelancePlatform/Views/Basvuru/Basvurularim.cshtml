@@ -1,0 +1,138 @@
+﻿@model List<FreelancePlatform.Models.Basvuru>
+
+@{
+    ViewData["Title"] = "Yaptığım Başvurular";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+<style>
+    body {
+        background: linear-gradient(120deg, #e6f0ff 0%, #f8fafc 100%);
+        min-height: 100vh;
+    }
+
+    .bv-table th {
+        background: #2d6cdf !important;
+        color: #fff !important;
+        text-align: center;
+    }
+
+    .bv-table td {
+        vertical-align: middle !important;
+        background: rgba(255,255,255,0.97);
+        text-align: center;
+    }
+
+    .bv-table tr:hover td {
+        background: #eef4fd !important;
+        transition: .18s;
+    }
+
+    .badge-budget {
+        background: #37c773;
+        font-size: 1rem;
+        border-radius: 1.3rem;
+        padding: .4em 1.1em;
+        margin-right: .4em;
+    }
+
+    .badge-currency {
+        background: #1d5be7;
+        border-radius: 1.3rem;
+        padding: .4em .9em;
+        font-size: .98rem;
+    }
+
+    .badge-date {
+        background: #f1b04e;
+        color: #232526;
+        border-radius: 1.3rem;
+        padding: .4em 1.1em;
+        font-size: .97rem;
+    }
+
+    .badge-durum {
+        border-radius: 1.3rem;
+        padding: .38em 1.1em;
+        font-size: .97rem;
+        color: #fff;
+        font-weight: 600;
+    }
+
+        .badge-durum.kabul {
+            background: #37c773;
+        }
+
+        .badge-durum.red {
+            background: #e23d3d;
+        }
+
+        .badge-durum.bekle {
+            background: #b3b6b8;
+            color: #232526;
+        }
+
+    .bv-container {
+        max-width: 900px;
+        margin: 48px auto;
+        background: #fff;
+        border-radius: 2rem;
+        box-shadow: 0 10px 32px 0 rgba(55,108,223,.09);
+        padding: 2.3rem 1.6rem;
+    }
+
+    h2.bv-header {
+        color: #2d6cdf;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2.2rem;
+    }
+    @@media (max-width: 768px) {
+        .bv-table
+
+    {
+        font-size: .97rem;
+    }
+
+    .bv-container {
+        padding: 1.3rem 0.6rem;
+    }
+
+    }</style>
+
+<div class="container container-custom">
+    <h2><i class="fas fa-paper-plane"></i> Yaptığım Başvurular</h2>
+
+    @if (!Model.Any())
+    {
+        <p class="text-muted">Henüz hiçbir projeye başvurmadınız.</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-custom table-borderless">
+                <thead>
+                    <tr>
+                        <th>Proje ID</th>
+                        <th>Mesaj</th>
+                        <th>Teklif (₺)</th>
+                        <th>Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var b in Model)
+                    {
+                        <tr>
+                            <td>@b.ProjeID</td>
+                            <td>@b.Mesaj</td>
+                            <td>@b.TeklifTutari.ToString("0.00") ₺</td>
+                            <td>@b.BasvuruTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

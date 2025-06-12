@@ -1,0 +1,129 @@
+﻿@model List<FreelancePlatform.Models.Basvuru>
+
+@{
+    ViewData["Title"] = "Gelen Başvurular";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+
+<style>
+    body {
+        background: linear-gradient(120deg, #e6f0ff 0%, #f8fafc 100%);
+        min-height: 100vh;
+    }
+
+    .gb-container {
+        max-width: 980px;
+        margin: 48px auto;
+        background: #fff;
+        border-radius: 2.1rem;
+        box-shadow: 0 10px 36px 0 rgba(45,108,223,.09);
+        padding: 2.4rem 1.6rem;
+    }
+
+    h2 {
+        color: #2d6cdf;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2.1rem;
+    }
+
+    .gb-table th {
+        background: #2d6cdf !important;
+        color: #fff !important;
+        text-align: center;
+    }
+
+    .gb-table td {
+        vertical-align: middle !important;
+        background: rgba(255,255,255,0.98);
+        text-align: center;
+    }
+
+    .gb-table tr:hover td {
+        background: #eaf2fc !important;
+        transition: .17s;
+    }
+
+    .btn-message {
+        border-radius: 1.3rem;
+        font-weight: 600;
+        border: none;
+        color: #fff;
+        background: linear-gradient(90deg,#2d6cdf 70%,#37c773 100%);
+        padding: 7px 20px;
+        box-shadow: 0 2px 8px rgba(45,108,223,0.09);
+        transition: background .17s, transform .15s;
+        font-size: 1.01rem;
+    }
+
+        .btn-message:hover {
+            background: linear-gradient(90deg,#37c773 10%,#2d6cdf 90%);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+    .text-muted {
+        text-align: center;
+        font-style: italic;
+        color: #a2b2d1 !important;
+    }
+    @@media (max-width: 768px) {
+        .gb-container
+
+    {
+        padding: 1.2rem 0.2rem;
+    }
+
+    .gb-table {
+        font-size: .98rem;
+    }
+
+    }</style>
+
+
+<div class="container container-custom">
+    <h2><i class="fas fa-inbox"></i> Size Gelen Başvurular</h2>
+
+    @if (!Model.Any())
+    {
+        <p class="text-muted">Henüz başvuru yapılmadı.</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-custom table-borderless">
+                <thead>
+                    <tr>
+                        <th>Proje ID</th>
+                        <th>Freelancer</th>
+                        <th>Mesaj</th>
+                        <th>Teklif (₺)</th>
+                        <th>Tarih</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var b in Model)
+                    {
+                        <tr>
+                            <td>@b.ProjeID</td>
+                            <td>@b.FreelancerEmail</td>
+                            <td>@b.Mesaj</td>
+                            <td>@b.TeklifTutari.ToString("0.00") ₺</td>
+                            <td>@b.BasvuruTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                            <td>
+                                <a class="btn btn-message"
+                                   href="/Mesaj/Mesajlasma?projeId=@b.ProjeID&digerEmail=@b.FreelancerEmail">
+                                    <i class="fas fa-comments"></i> Mesajlaş
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
