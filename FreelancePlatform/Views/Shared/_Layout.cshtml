@@ -81,7 +81,7 @@
                         <li class="nav-item"><a class="nav-link" href="/Kullanici/Giris"><i class="fas fa-sign-in-alt"></i> Giriş</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Kullanici/Kayit"><i class="fas fa-user-plus"></i> Kayıt Ol</a></li>
                     }
-                    else if (kullanici.Rol == "Freelancer")
+                    else if (kullanici?.Rol == "Freelancer")
                     {
                         <li class="nav-item"><a class="nav-link" href="/Proje/Listele"><i class="fas fa-briefcase"></i> Projeler</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Basvuru/Basvurularim"><i class="fas fa-list"></i> Başvurularım</a></li>
@@ -89,7 +89,7 @@
                         <li class="nav-item"><a class="nav-link" href="/Kullanici/Profil"><i class="fas fa-user"></i> Profil</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Kullanici/Cikis"><i class="fas fa-sign-out-alt"></i> Çıkış</a></li>
                     }
-                    else if (kullanici.Rol == "Isveren")
+                    else if (kullanici?.Rol == "Isveren")
                     {
                         <li class="nav-item"><a class="nav-link" href="/Proje/Listele"><i class="fas fa-briefcase"></i> Projeler</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Proje/Ekle"><i class="fas fa-plus-circle"></i> Proje Yayınla</a></li>
@@ -98,7 +98,7 @@
                         <li class="nav-item"><a class="nav-link" href="/Kullanici/Profil"><i class="fas fa-user"></i> Profil</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Kullanici/Cikis"><i class="fas fa-sign-out-alt"></i> Çıkış</a></li>
                     }
-                    else if (kullanici.Rol == "Yonetici")
+                    else if (kullanici?.Rol == "Yonetici")
                     {
                         <li class="nav-item"><a class="nav-link" href="/Admin/Panel"><i class="fas fa-tools"></i> Yönetici Paneli</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Proje/Listele"><i class="fas fa-briefcase"></i> Tüm Projeler</a></li>
@@ -123,15 +123,15 @@
                 © @DateTime.Now.Year FreelancePlatform &nbsp;|&nbsp; <a href="/Hakkimizda/Hakkimizda">Hakkımızda</a> &nbsp;|&nbsp; <a href="/Iletisim/Iletisim">İletişim</a>
             </span>
         }
-        else if (kullanici.Rol == "Freelancer")
+        else if (kullanici?.Rol == "Freelancer")
         {
             <span>Freelancer Paneli &nbsp;|&nbsp; <a class="footer-link" href="/Basvuru/Basvurularim">Başvurularım</a> &nbsp;|&nbsp; <a class="footer-link" href="/Kullanici/Profil">Profilim</a></span>
         }
-        else if (kullanici.Rol == "Isveren")
+        else if (kullanici?.Rol == "Isveren")
         {
             <span>İşveren Paneli &nbsp;|&nbsp; <a class="footer-link" href="/Proje/Ekle">Proje Yayınla</a> &nbsp;|&nbsp; <a class="footer-link" href="/Basvuru/GelenBasvurular">Başvurular</a></span>
         }
-        else if (kullanici.Rol == "Yonetici")
+        else if (kullanici?.Rol == "Yonetici")
         {
             <span>Yönetici &nbsp;|&nbsp; <a class="footer-link" href="/Admin/Panel">Panel</a></span>
         }

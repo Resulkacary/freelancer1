@@ -190,20 +190,20 @@
                 <a href="/Kullanici/Giris" class="hero-navlink"><i class="fas fa-sign-in-alt"></i> Giriş</a>
                 <a href="/Kullanici/Kayit" class="hero-navlink"><i class="fas fa-user-plus"></i> Kayıt Ol</a>
             }
-            else if (user.Rol == "Isveren")
+            else if (user?.Rol == "Isveren")
             {
                 <a href="/Kullanici/IsverenPaneli" class="hero-navlink"><i class="fas fa-user-tie"></i> Panelim</a>
                 <a href="/Proje/Ekle" class="hero-navlink"><i class="fas fa-plus-circle"></i> Proje Ekle</a>
                 <a href="/Kullanici/Cikis" class="hero-navlink"><i class="fas fa-sign-out-alt"></i> Çıkış</a>
             }
-            else if (user.Rol == "Freelancer")
+            else if (user?.Rol == "Freelancer")
             {
                 <a href="/Kullanici/FreelancerPaneli" class="hero-navlink"><i class="fas fa-user-astronaut"></i> Panelim</a>
                 <a href="/Proje/Listele" class="hero-navlink"><i class="fas fa-briefcase"></i> Projeler</a>
                 <a href="/Basvuru/Basvurularim" class="hero-navlink"><i class="fas fa-envelope-open"></i> Başvurularım</a>
                 <a href="/Kullanici/Cikis" class="hero-navlink"><i class="fas fa-sign-out-alt"></i> Çıkış</a>
             }
-            else if (user.Rol == "Yonetici")
+            else if (user?.Rol == "Yonetici")
             {
                 <a href="/Kullanici/YoneticiPaneli" class="hero-navlink"><i class="fas fa-user-shield"></i> Yönetici Paneli</a>
                 <a href="/Yonetici/Kullanicilar" class="hero-navlink"><i class="fas fa-users-cog"></i> Kullanıcılar</a>
@@ -228,7 +228,7 @@
                     </a>
                 </div>
             }
-            else if (user.Rol == "Isveren")
+            else if (user?.Rol == "Isveren")
             {
                 <div>
                     <div class="hero-title mb-3">Hoşgeldin, @user.AdSoyad 👋</div>
@@ -244,7 +244,7 @@
                     </a>
                 </div>
             }
-            else if (user.Rol == "Freelancer")
+            else if (user?.Rol == "Freelancer")
             {
                 <div>
                     <div class="hero-title mb-3">Merhaba, @user.AdSoyad 👋</div>
@@ -260,7 +260,7 @@
                     </a>
                 </div>
             }
-            else if (user.Rol == "Yonetici")
+            else if (user?.Rol == "Yonetici")
             {
                 <div>
                     <div class="hero-title mb-3">Yönetici Paneli</div>

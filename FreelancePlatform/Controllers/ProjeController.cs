@@ -74,21 +74,16 @@ namespace FreelancePlatform.Controllers
             if (proje == null)
                 return NotFound();
 
-            if (string.IsNullOrEmpty(proje.ParaBirimi)) proje.ParaBirimi = "TRY";
+            // Bu alanlar nullable olabilir, burada garanti altına alalım:
+            proje.ParaBirimi ??= "TRY";
             if (proje.Butce <= 0) proje.Butce = 1;
 
             var rates = await GetCurrencyRatesAsync(proje.ParaBirimi, proje.Butce);
             ViewBag.Kurlar = rates;
 
-            // TL karşılığı ViewBag'e aktar
-            if (rates.ContainsKey("TRY"))
-            {
-                ViewBag.TL = rates["TRY"].ToString("N2") + " TL";
-            }
-            else
-            {
-                ViewBag.TL = "Kur alınamadı";
-            }
+            ViewBag.TL = rates.ContainsKey("TRY")
+                ? $"{rates["TRY"]:N2} TL"
+                : "Kur alınamadı";
 
             return View(proje);
         }
