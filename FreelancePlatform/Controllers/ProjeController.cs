@@ -51,6 +51,8 @@ namespace FreelancePlatform.Controllers
             if (userJson == null) return RedirectToAction("Giris", "Kullanici");
 
             var user = JsonSerializer.Deserialize<AppUser>(userJson);
+            if (user == null)
+                return RedirectToAction("Giris", "Kullanici");
 
             if (user.Rol != "Isveren" && user.Rol != "Yonetici")
                 return Unauthorized();
@@ -69,6 +71,11 @@ namespace FreelancePlatform.Controllers
                 return NotFound();
 
             var proje = snapshot.ConvertTo<Proje>();
+            if (proje == null)
+                return NotFound();
+
+            if (string.IsNullOrEmpty(proje.ParaBirimi)) proje.ParaBirimi = "TRY";
+            if (proje.Butce <= 0) proje.Butce = 1;
 
             var rates = await GetCurrencyRatesAsync(proje.ParaBirimi, proje.Butce);
             ViewBag.Kurlar = rates;
