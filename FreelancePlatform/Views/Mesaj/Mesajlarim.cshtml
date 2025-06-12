@@ -2,10 +2,16 @@
 
 @{
     ViewData["Title"] = "Mesajlarım";
-    var userEmail = Context.Session.GetString("Kullanici") != null
-        ? System.Text.Json.JsonSerializer.Deserialize<FreelancePlatform.Models.AppUser>(Context.Session.GetString("Kullanici")!).EmailAdres
-        : "";
+    string? userEmail = null;
+
+    var userJson = Context.Session.GetString("Kullanici");
+    if (!string.IsNullOrEmpty(userJson))
+    {
+        var user = System.Text.Json.JsonSerializer.Deserialize<FreelancePlatform.Models.AppUser>(userJson);
+        userEmail = user?.EmailAdres;
+    }
 }
+
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
@@ -150,6 +156,7 @@
                                 {
                                     <span class="text-muted">-</span>
                                 }
+
                             </td>
                         </tr>
                     }

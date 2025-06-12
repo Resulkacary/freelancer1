@@ -162,9 +162,11 @@ namespace FreelancePlatform.Controllers
         public async Task<IActionResult> Ekle(Proje yeniProje)
         {
             var userJson = HttpContext.Session.GetString("Kullanici");
-            if (userJson == null) return RedirectToAction("Giris", "Kullanici");
+            if (string.IsNullOrEmpty(userJson)) return RedirectToAction("Giris", "Kullanici");
 
             var user = JsonSerializer.Deserialize<AppUser>(userJson);
+            if (user == null)
+                return RedirectToAction("Giris", "Kullanici");
 
             if (user.Rol != "Isveren" && user.Rol != "Yonetici")
                 return Unauthorized();

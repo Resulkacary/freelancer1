@@ -4,7 +4,9 @@
 @{
     // Kullanıcı bilgisini sessiondan çekiyoruz.
     var userJson = Context.Session.GetString("Kullanici");
-    AppUser kullanici = null;
+    var kullanici = !string.IsNullOrEmpty(userJson)
+        ? JsonSerializer.Deserialize<AppUser>(userJson)
+        : null;
     if (!string.IsNullOrEmpty(userJson))
     {
         kullanici = JsonSerializer.Deserialize<AppUser>(userJson);
